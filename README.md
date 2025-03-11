@@ -1,14 +1,3 @@
-# Army-ERD
-## Army Data Wearhouse ERD
-
-Editor used: mermaid live editor
-https://mermaid.live/edit
-
-ERD documentatie
-https://mermaid.js.org/syntax/entityRelationshipDiagram.html
-
-
-```mermaid
 ---
 title: Army Structure
 ---
@@ -39,10 +28,14 @@ erDiagram
   Armament{
     int id_persoana
     int serie
+    int nr_arme
+    int nr_gloante
   }
   Rol{
+    int id_rol
     int id_persoana
-    int rol
+    string rol
+    int risc
   }
   Locatie{
     int id
@@ -83,8 +76,11 @@ erDiagram
   Persoana ||--o| Brigada : apartine
   Persoana ||--o| Companie : apartine
   Persoana ||--o| Pluton : apartine
+  Persoana ||--|| Rol : are
   Persoana ||--|{ Antrenament : "a participat"
   Antrenament ||--|| Locatie : " desfasurat in"
+  Rol ||--|| Antrenament : conform
+  Rol ||--|| Armament : "are caracteristic"
   Persoana ||--|| Grad : are
   Persoana ||--|{ Armament : are
   Persoana ||--|| Locatie : "se afla in"
@@ -94,5 +90,3 @@ erDiagram
   Brigada ||..|{ Companie : "compusa din"
   Companie ||--|{ Pluton : "compusa din"
   
-  
-```
