@@ -1,3 +1,14 @@
+# Army-ERD
+## Army Data Wearhouse ERD
+ 
+Editor used: mermaid live editor
+https://mermaid.live/edit
+ 
+ERD documentatie
+https://mermaid.js.org/syntax/entityRelationshipDiagram.html
+ 
+ 
+```mermaid
 ---
 title: Army Structure
 ---
@@ -89,4 +100,5 @@ erDiagram
   Divizie ||--|{ Brigada : "compusa din"
   Brigada ||..|{ Companie : "compusa din"
   Companie ||--|{ Pluton : "compusa din"
-  
+    
+```
