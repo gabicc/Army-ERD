@@ -68,5 +68,18 @@ where p.id_rol = r.id_rol and r.risc >= :risk
 select nume, prenume
 from persoana
 order by id_grad asc
+```
 
+11. Afiseaza toate antrenamentele care s-au desfasurat deja
+```sql
+select p.nume, p.prenume, a.nr_ore_durata
+from persoana p, antrenament a
+where sysdate > a.data
+```
+
+12. Afiseaza antrenamentele care vor avea loc intr-o luna si an date de la tastatura(NU E BUN)
+```sql
+select data, nr_ore_durata
+from antrenament
+where to_char(data, 'mm') = :month and to_char(data, 'yy') = :year
 ```
