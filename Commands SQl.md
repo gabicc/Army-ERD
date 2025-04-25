@@ -72,9 +72,9 @@ order by id_grad asc
 
 11. Afiseaza toate antrenamentele care s-au desfasurat deja
 ```sql
-select p.nume, p.prenume, a.nr_ore_durata
-from persoana p, antrenament a
-where sysdate > a.data
+select p.nume, p.prenume, a.id_locatie, a.nr_ore_durata
+from antrenament a, persoana p
+where p.id = a.id_persoana and trunc((sysdate-a.data)/365.25) > 0
 ```
 
 12. Afiseaza antrenamentele care vor avea loc intr-o luna si an date de la tastatura(NU E BUN)
@@ -82,4 +82,11 @@ where sysdate > a.data
 select data, nr_ore_durata
 from antrenament
 where to_char(data, 'mm') = :month and to_char(data, 'yy') = :year
+```
+
+13. Afiseaza cel mai lung antrenament
+```sql
+select p.nume, p.prenume, a.nr_ore_durata
+from persoana p, antrenament a
+where p.id = a.id_persoana and a.nr_ore_durata = (select max(aa.nr_ore_durata) from antrenament aa)
 ```
