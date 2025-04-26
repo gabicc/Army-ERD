@@ -106,7 +106,14 @@ from antrenament
 where id_locatie = :location
 ```
 
-16. Afiseaza locatia cea mai sudica
+16. Afiseaza toate promovarile care au avut loc intr-un an dat de la tastatura
+```sql
+select p.nume, p.prenume, pr.data, pr.id_rang
+from persoana p, promovari pr
+where p.id = pr.id_persoana and to_char(pr.data, 'yyyy') = :year
+```
+
+17. Afiseaza locatia cea mai sudica
 ```sql
 with 
 
@@ -129,9 +136,3 @@ from locatie lat, lat_comp l, min_lat_comp ll
 where l.latitudine = ll.minim_latitudine and lat.nume = l.nume
 ```
 
-17. Afiseaza toate promovarile care au avut loc intr-un an dat de la tastatura
-```sql
-select p.nume, p.prenume, pr.data, pr.id_rang
-from persoana p, promovari pr
-where p.id = pr.id_persoana and to_char(pr.data, 'yyyy') = :year
-```
