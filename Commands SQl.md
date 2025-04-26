@@ -90,3 +90,41 @@ select p.nume, p.prenume, a.nr_ore_durata
 from persoana p, antrenament a
 where p.id = a.id_persoana and a.nr_ore_durata = (select max(aa.nr_ore_durata) from antrenament aa)
 ```
+
+14. Afiseaza toate persoanele care au o arma in ordine descrescatoare in functie de numarul de gloante
+```sql
+select p.nume, p.prenume, a.model, a.nr_gloante
+from armament a, persoana p
+where a.id_persoana = p.id
+order by nr_gloante desc
+```
+
+15. Afiseaza ce antrenamente s-au desfasurat intr-o locatie data de la tastatura
+```sql
+select id_persoana as persoana, nr_ore_durata as durata
+from antrenament
+where id_locatie = :location
+```
+
+16. Afiseaza locatia cea mai sudica
+```sql
+with 
+
+lat_comp as(
+select l.nume, l.latitudine, l.directie_latitudine as directie
+from locatie l
+where lower(l.directie_latitudine) = 'nord'
+
+union all
+select l.nume, (-1 * l.latitudine) as latitudine, l.directie_latitudine as directie
+from locatie l
+where lower(l.directie_latitudine) = 'sud'),
+
+min_lat_comp as (
+    select min(lat_comp.latitudine) as minim_latitudine from lat_comp
+)
+
+select l.nume, lat.latitudine, l.directie
+from locatie lat, lat_comp l, min_lat_comp ll
+where l.latitudine = ll.minim_latitudine and lat.nume = l.nume
+```
