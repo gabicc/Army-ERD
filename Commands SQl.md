@@ -77,11 +77,11 @@ from antrenament a, persoana p
 where p.id = a.id_persoana and trunc((sysdate-a.data)/365.25) > 0
 ```
 
-12. Afiseaza antrenamentele care vor avea loc intr-o luna si an date de la tastatura(NU E BUN)
+12. Afiseaza antrenamentele care vor avea loc intr-o luna si an date de la tastatura
 ```sql
 select data, nr_ore_durata
 from antrenament
-where to_char(data, 'mm') = :month and to_char(data, 'yy') = :year
+where to_char(data, 'mm') = :month and to_char(data, 'yyyy') = :year
 ```
 
 13. Afiseaza cel mai lung antrenament
@@ -127,4 +127,11 @@ min_lat_comp as (
 select l.nume, lat.latitudine, l.directie
 from locatie lat, lat_comp l, min_lat_comp ll
 where l.latitudine = ll.minim_latitudine and lat.nume = l.nume
+```
+
+17. Afiseaza toate promovarile care au avut loc intr-un an dat de la tastatura
+```sql
+select p.nume, p.prenume, pr.data, pr.id_rang
+from persoana p, promovari pr
+where p.id = pr.id_persoana and to_char(pr.data, 'yyyy') = :year
 ```
