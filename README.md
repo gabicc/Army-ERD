@@ -24,10 +24,12 @@ erDiagram
         int id_companie
         int id_pluton
         int experienta
+        int id_rol
   }
   Grad{
     int id
     string nume
+    string ce_comanda
 
   }
   Promovari{
@@ -37,33 +39,35 @@ erDiagram
     int id_persoana
   }
   Armament{
+    string model
     int id_persoana
-    int serie
-    int nr_arme
     int nr_gloante
+    string calibru
   }
   Rol{
     int id_rol
-    int id_persoana
-    string rol
+    string denumire_rol
     int risc
   }
   Locatie{
-    int id
+    int id_locatie
     int latitudine
     int longitudine
     string nume
+    string directie_latitudine
+    string directie_longitudine
   }
   Antrenament{
+    int id
     int id_persoana
-    int durata
+    int nr_ore_durata
     int id_locatie
     date data
   }
   Divizie{
     int id
     sting nume
-    int id_comandant
+    int id_general
   }
   Brigada{
     int id
@@ -74,13 +78,13 @@ erDiagram
   Companie{
     int id
     sting nume
-    int id_comandant
+    int id_capitan
     int id_brigada
   }
   Pluton{
     int id
     sting nume
-    int id_comandant
+    int id_locotenent
     int id_companie
   }
   Persoana ||--|| Divizie : apartine
